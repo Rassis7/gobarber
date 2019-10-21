@@ -9,6 +9,7 @@ import 'express-async-errors';
 import routes from './routes';
 import sentryConfig from './config/sentry';
 import Youch from 'youch';
+import cors from 'cors';
 
 import './database';
 
@@ -24,6 +25,7 @@ class App {
 
   middlawares() {
     this.server.use(Sentry.Handlers.requestHandler());
+    this.server.use(cors());
     this.server.use(express.json());
     // Liberar para acessar arquivos estáticos
     this.server.use(
